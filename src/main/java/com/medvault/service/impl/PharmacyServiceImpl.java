@@ -249,6 +249,7 @@ public class PharmacyServiceImpl implements PharmacyService {
                 .lowStockThreshold(req.getLowStockThreshold() != null ? req.getLowStockThreshold() : 10)
                 .unitPrice(req.getUnitPrice())
                 .manufacturer(req.getManufacturer())
+                .expiryDate(req.getExpiryDate())
                 .isActive(true)
                 .build();
         return ApiResponse.ok("Medicine added to inventory!", toMedResponse(medicineRepository.save(med)));
@@ -334,6 +335,7 @@ public class PharmacyServiceImpl implements PharmacyService {
                 .manufacturer(m.getManufacturer())
                 .isActive(m.getIsActive())
                 .isLowStock(m.isLowStock())
+                .expiryDate(m.getExpiryDate())
                 .updatedAt(m.getUpdatedAt() != null ? m.getUpdatedAt().toString() : "")
                 .build();
     }
