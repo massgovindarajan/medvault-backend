@@ -38,7 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        .cors(AbstractHttpConfigurer::disable)
             .csrf(AbstractHttpConfigurer::disable)
 
             .sessionManagement(session ->
@@ -98,26 +98,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // ── CORS ─────────────────────────────────────────────────────────────────
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-
-        config.setAllowedOrigins(List.of(
-            "https://medical-six-dun.vercel.app"
-        ));
-        config.setAllowedMethods(List.of(
-            "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"
-        ));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
-        config.setMaxAge(3600L);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
-
+   
     // ── Auth ──────────────────────────────────────────────────────────────────
     @Bean
     public AuthenticationProvider authenticationProvider() {

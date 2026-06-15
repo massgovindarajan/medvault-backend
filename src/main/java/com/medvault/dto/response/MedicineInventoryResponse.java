@@ -1,5 +1,7 @@
 package com.medvault.dto.response;
 
+import java.time.LocalDate;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,4 +19,7 @@ public class MedicineInventoryResponse {
     private Boolean isActive;
     private Boolean isLowStock;      
     private String  updatedAt;
+   
+    private LocalDate expiryDate;
+
 }
